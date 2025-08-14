@@ -4,28 +4,6 @@ import type React from "react";
 import { use, useEffect } from "react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import {
-  Phone,
-  Shield,
-  Users,
-  Award,
-  Clock,
-  X,
-  ChevronLeft,
-  ChevronRight,
-  Menu,
-  Globe,
-} from "lucide-react";
 
 const translations = {
   uz: {
@@ -510,10 +488,6 @@ const translations = {
 
 const Thankyou = () => {
   const [language, setLanguage] = useState<"uz" | "ru">("uz");
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [showThankYou, setShowThankYou] = useState(false);
 
   const t = translations[language as keyof typeof translations];
   if (typeof window !== "undefined") {
