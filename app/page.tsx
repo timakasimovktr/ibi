@@ -1309,6 +1309,14 @@ export default function ConsultingPage() {
             </div>
           </div>
         </div>
+        <div className="mt-10 w-full flex align-center justify-center">
+          <Button
+            onClick={() => setIsModalOpen(true)}
+            className="bg-blue-900 hover:bg-blue-800 text-white font-medium py-2 sm:py-3 px-6 sm:px-8 rounded-lg text-base sm:text-lg transition-colors cursor-pointer"
+          >
+            {t.services.submitButton}
+          </Button>
+        </div>
       </section>
 
       <section
