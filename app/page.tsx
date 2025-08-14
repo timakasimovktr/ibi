@@ -1,8 +1,7 @@
 "use client";
 
 import type React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -804,7 +803,7 @@ export default function ConsultingPage() {
     );
   };
 
-  const xusansdick = (lang: "uz" | "ru") => {
+  const switchLanguage = (lang: "uz" | "ru") => {
     setLanguage(lang);
     localStorage.setItem("language", lang);
   };
@@ -817,11 +816,16 @@ export default function ConsultingPage() {
     setIsMobileMenuOpen(false);
   };
 
-  if (typeof window !== "undefined") {
-    useEffect(() => {
-      setLanguage(localStorage.getItem("language") as "uz" | "ru");
-    }, [localStorage]);
-  }
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const storedLanguage = localStorage.getItem("language");
+    if (storedLanguage === "uz" || storedLanguage === "ru") {
+      setLanguage(storedLanguage);
+    } else {
+      localStorage.setItem("language", "uz"); // Set default if none exists
+    }
+  }, []); // Empty dependency array to run only on mount
 
   const ThankYouPage = () => (
     <div className="fixed inset-0 bg-white z-50 flex items-center justify-center p-4">
@@ -908,7 +912,7 @@ export default function ConsultingPage() {
               <div className="flex items-center space-x-2">
                 <Globe className="h-4 w-4 text-gray-600" />
                 <button
-                  onClick={() => xusansdick("uz")}
+                  onClick={() => switchLanguage("uz")}
                   className={`text-sm px-2 py-1 rounded cursor-pointer transition-colors ${
                     language === "uz"
                       ? "bg-blue-900 text-white"
@@ -918,7 +922,7 @@ export default function ConsultingPage() {
                   UZ
                 </button>
                 <button
-                  onClick={() => xusansdick("ru")}
+                  onClick={() => switchLanguage("ru")}
                   className={`text-sm px-2 py-1 rounded cursor-pointer transition-colors ${
                     language === "ru"
                       ? "bg-blue-900 text-white"
@@ -974,7 +978,7 @@ export default function ConsultingPage() {
                 <div className="flex items-center px-3 py-2 space-x-2">
                   <Globe className="h-4 w-4 text-gray-600" />
                   <button
-                    onClick={() => setLanguage("uz")}
+                    onClick={() => switchLanguage("uz")}
                     className={`text-sm px-2 py-1 rounded cursor-pointer transition-colors ${
                       language === "uz"
                         ? "bg-blue-900 text-white"
@@ -984,7 +988,7 @@ export default function ConsultingPage() {
                     UZ
                   </button>
                   <button
-                    onClick={() => setLanguage("ru")}
+                    onClick={() => switchLanguage("ru")}
                     className={`text-sm px-2 py-1 rounded cursor-pointer transition-colors ${
                       language === "ru"
                         ? "bg-blue-900 text-white"
