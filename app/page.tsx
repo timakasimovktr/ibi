@@ -603,16 +603,34 @@ function ContactForm({
 
     // Simulate form submission
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      alert(t.form.successMessage);
-      setName("");
-      setPhone("+998 ");
-      setMessage("");
-      setErrors({});
-      if (onClose) onClose();
-      if (onSuccess) onSuccess();
+      const messageTxt = `📩 Новая заявка:\n\n👤 Имя: ${name}\n📞 Телефон: ${phone}\n💬 Сообщение: ${message}`;
+
+      const response = await fetch(
+        `https://api.telegram.org/bot8430624525:AAGb-kjmFxUtTj4gi672IQNBBuDOyCanySc/sendMessage`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            chat_id: -4983978774,
+            text: messageTxt,
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok || !data.ok) {
+        throw new Error("Не удалось отправить в Telegram");
+      }
+
+      window.location.href = "/thankyou";
+
+      setErrors({ name: "", phone: "" });
     } catch (error) {
-      alert(t.form.errorMessage);
+      alert("Ошибка при отправке формы. Попробуйте ещё раз.");
+      console.error(error);
     } finally {
       setIsSubmitting(false);
     }
@@ -798,6 +816,12 @@ export default function ConsultingPage() {
     }
     setIsMobileMenuOpen(false);
   };
+
+  if (typeof window !== "undefined") {
+    useEffect(() => {
+      setLanguage(localStorage.getItem("language") as "uz" | "ru");
+    }, [localStorage]);
+  }
 
   const ThankYouPage = () => (
     <div className="fixed inset-0 bg-white z-50 flex items-center justify-center p-4">
