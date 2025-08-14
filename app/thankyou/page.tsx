@@ -4,6 +4,7 @@ import type React from "react";
 import { use, useEffect } from "react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import Cookies from "js-cookie";
 
 const translations = {
   uz: {
@@ -492,8 +493,8 @@ const Thankyou = () => {
   const t = translations[language as keyof typeof translations];
   if (typeof window !== "undefined") {
     useEffect(() => {
-      setLanguage(localStorage.getItem("language") as "uz" | "ru");
-    }, [localStorage]);
+      setLanguage(Cookies.get("language") as "uz" | "ru");
+    }, [Cookies]);
   }
 
   return (

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import Cookies from "js-cookie";
 import {
   Card,
   CardContent,
@@ -805,7 +806,7 @@ export default function ConsultingPage() {
 
   const switchLanguage = (lang: "uz" | "ru") => {
     setLanguage(lang);
-    localStorage.setItem("language", lang);
+    Cookies.set("language", lang);
   };
 
   const scrollToSection = (sectionId: string) => {
@@ -819,11 +820,11 @@ export default function ConsultingPage() {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const storedLanguage = localStorage.getItem("language");
+    const storedLanguage = Cookies.get("language");
     if (storedLanguage === "uz" || storedLanguage === "ru") {
       setLanguage(storedLanguage);
     } else {
-      localStorage.setItem("language", "uz"); // Set default if none exists
+      Cookies.set("language", "uz"); // Set default if none exists
     }
   }, []); // Empty dependency array to run only on mount
 
