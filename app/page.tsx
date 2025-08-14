@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-
+import { useEffect } from "react"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -654,6 +654,38 @@ function ContactForm({
   return cardContent
 }
 
+function CountdownTimer({ language }: { language: "uz" | "ru" }) {
+  const [timeLeft, setTimeLeft] = useState(10 * 60) // 10 minutes in seconds
+
+  useEffect(() => {
+    if (timeLeft <= 0) return
+
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => prev - 1)
+    }, 1000)
+
+    return () => clearInterval(timer)
+  }, [timeLeft])
+
+  const minutes = Math.floor(timeLeft / 60)
+  const seconds = timeLeft % 60
+
+  const timerText =
+    language === "uz" ? "⏰ Chegirmali maslahat vaqti tugaydi:" : "⏰ Время скидочной консультации истекает:"
+
+  if (timeLeft <= 0) {
+    return null
+  }
+
+  return (
+    <div className="text-center mb-6">
+      <div className="inline-flex items-center bg-yellow-500 text-yellow-900 px-4 py-2 rounded-lg font-bold text-sm sm:text-base">
+        {timerText} {String(minutes).padStart(2, "0")}:{String(seconds).padStart(2, "0")}
+      </div>
+    </div>
+  )
+}
+
 export default function ConsultingPage() {
   const [language, setLanguage] = useState<"uz" | "ru">("uz")
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -840,6 +872,7 @@ export default function ConsultingPage() {
         </div>
       </nav>
 
+      {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-blue-900 to-blue-800 text-white py-12 sm:py-16 lg:py-20 px-2 sm:px-4 pt-20 sm:pt-24 lg:pt-32">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
@@ -861,7 +894,8 @@ export default function ConsultingPage() {
                 </div>
               </div>
             </div>
-            <div className="mt-8 lg:mt-0">
+            <div className="mt-8 lg:mt-0 flex flex-col items-center">
+              <CountdownTimer language={language} />
               <ContactForm
                 title={t.hero.formTitle}
                 description={t.hero.formDescription}
@@ -1091,10 +1125,13 @@ export default function ConsultingPage() {
         </div>
       </section>
 
+      {/* Final CTA Section */}
       <section className="py-12 sm:py-16 lg:py-20 px-2 sm:px-4 bg-gradient-to-r from-blue-900 to-blue-800 text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6">{t.finalCta.title}</h2>
           <p className="text-base sm:text-lg lg:text-xl mb-8 sm:mb-12 text-blue-100 px-4">{t.finalCta.subtitle}</p>
+
+          <CountdownTimer language={language} />
 
           <ContactForm
             title={t.finalCta.formTitle}
