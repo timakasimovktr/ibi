@@ -1286,26 +1286,25 @@ export default function ConsultingPage() {
             </button>
 
             <div className="flex justify-center mt-6 sm:mt-8 space-x-2">
-              {(typeof window !== "undefined" && window.innerWidth >= 1024
-                ? Array.from({
-                    length: Math.ceil(t.testimonials.items.length / 3),
-                  })
-                : t.testimonials.items
-              ).map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentTestimonial(index)}
-                  className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-colors cursor-pointer ${
-                    (
-                      typeof window !== "undefined" && window.innerWidth >= 1024
-                        ? index === Math.floor(currentTestimonial / 3)
-                        : index === currentTestimonial
-                    )
-                      ? "bg-blue-900"
-                      : "bg-gray-300"
-                  }`}
-                />
-              ))}
+              {Array.from({ length: t.testimonials.items.length }).map(
+                (_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentTestimonial(index)}
+                    className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-colors cursor-pointer ${
+                      index === currentTestimonial
+                        ? "bg-blue-900"
+                        : "bg-gray-300"
+                    } lg:${
+                      index >= Math.ceil(t.testimonials.items.length / 3)
+                        ? "hidden" // Hide extra dots on large screens
+                        : index === Math.floor(currentTestimonial / 3)
+                        ? "bg-blue-900"
+                        : "bg-gray-300"
+                    }`}
+                  />
+                )
+              )}
             </div>
           </div>
         </div>
