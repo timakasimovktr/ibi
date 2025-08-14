@@ -116,7 +116,7 @@ const translations = {
         },
         {
           title: "Tajribali jamoa",
-          description: "2025 yildan beri ish tajribasi bo'lgan malakali yuristlar va buxgalterlar",
+          description: "2018 yildan beri ish tajribasi bo'lgan malakali yuristlar va buxgalterlar",
         },
         {
           title: "Maxfiylik",
@@ -133,8 +133,8 @@ const translations = {
       subtitle: "Mijozlarimiz biz haqimizda nima deyishadi",
       items: [
         {
-          name: "Aziz Karimov",
-          company: "MChJ 'Tekstil Plyus'",
+          name: "Nurber Abdullayev",
+          company: "MChJ 'Phoenix Core Laboratory'",
           text: "Ajoyib jamoa! Kompaniyani tez ro'yxatdan o'tkazishga va barcha jarayonlarni sozlashga yordam berishdi. Xizmatdan juda mamnunmiz.",
         },
         {
@@ -171,7 +171,7 @@ const translations = {
         {
           question: "MChJ ro'yxatdan o'tkazish qancha vaqt oladi?",
           answer:
-            "Odatda MChJ ro'yxatdan o'tkazish jarayoni barcha kerakli hujjatlar topshirilgan kundan boshlab 3-5 ish kuni davom etadi.",
+            "Odatda MChJ ro'yxatdan o'tkazish jarayoni barcha kerakli hujjatlar topshirilgan kundan boshlab 1-3 ish kuni davom etadi.",
         },
         {
           question: "YaTT ro'yxatdan o'tkazish uchun qanday hujjatlar kerak?",
@@ -202,7 +202,7 @@ const translations = {
       formDescription: "Savolingiz bo'yicha shaxsiy maslahatni bepul oling",
     },
     footer: {
-      copyright: "© 2025 O'zbekistonda yuridik va buxgalteriya xizmatlari. Barcha huquqlar himoyalangan.",
+      copyright: "© 2018 Konsulting.uz. Yuridik va buxgalteriya xizmatlari. Barcha huquqlar himoyalangan.",
     },
     form: {
       namePlaceholder: "Ismingiz",
@@ -339,7 +339,7 @@ const translations = {
         },
         {
           title: "Опытная команда",
-          description: "Квалифицированные юристы и бухгалтеры с опытом работы с 2025 года",
+          description: "Квалифицированные юристы и бухгалтеры с опытом работы с 2018 года",
         },
         {
           title: "Конфиденциальность",
@@ -356,8 +356,8 @@ const translations = {
       subtitle: "Что говорят о нас наши клиенты",
       items: [
         {
-          name: "Азиз Каримов",
-          company: "ООО 'Текстиль Плюс'",
+          name: "Нурбек Абдуллаев",
+          company: "ООО 'Phoenix Core Laboratory'",
           text: "Отличная команда! Помогли быстро зарегистрировать компанию и настроить все процессы. Очень довольны сервисом.",
         },
         {
@@ -394,7 +394,7 @@ const translations = {
         {
           question: "Сколько времени занимает регистрация ООО?",
           answer:
-            "Обычно процесс регистрации ООО занимает 3-5 рабочих дней с момента подачи всех необходимых документов.",
+            "Обычно процесс регистрации ООО занимает 1-3 рабочих дней с момента подачи всех необходимых документов.",
         },
         {
           question: "Какие документы нужны для регистрации ИП?",
@@ -425,7 +425,7 @@ const translations = {
       formDescription: "Получите персональную консультацию по вашему вопросу без оплаты",
     },
     footer: {
-      copyright: "© 2025 Юридические и бухгалтерские услуги в Узбекистане. Все права защищены.",
+      copyright: "© 2018 Konsulting.uz. Юридические и бухгалтерские услуги. Все права защищены.",
     },
     form: {
       namePlaceholder: "Ваше имя",
